@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Арга хэмжээний урилга</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14181f;
+    --ink-2:#1c222c;
+    --gold:#c9a15b;
+    --gold-soft:#e3c98a;
+    --cream:#f3ede0;
+    --cream-dim:rgba(243,237,224,0.62);
+    --line:rgba(243,237,224,0.14);
+    --sage:#6b7a63;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--cream);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:500; letter-spacing:0.01em; }
+
+  /* ---------- decorative motif ---------- */
+  .khee-divider{
+    width:100%;
+    max-width:420px;
+    margin:0 auto;
+    display:block;
+    opacity:0.75;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:8vh 6vw 6vh;
+    position:relative;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(201,161,91,0.14), transparent 55%),
+      var(--ink);
+  }
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:1.6rem;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 4.4rem);
+    line-height:1.08;
+    max-width:16ch;
+    color:var(--cream);
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold-soft);
+  }
+  .hero-meta{
+    margin-top:2.4rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.6rem 2.2rem;
+    justify-content:center;
+    font-size:0.95rem;
+    color:var(--cream-dim);
+  }
+  .hero-meta span{ color:var(--cream); font-weight:500; }
+  .scroll-cue{
+    position:absolute;
+    bottom:5vh;
+    font-size:0.68rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--cream-dim);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0.6rem;
+  }
+  .scroll-cue::after{
+    content:'';
+    width:1px;
+    height:28px;
+    background:linear-gradient(var(--gold), transparent);
+    animation:pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse{ 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+
+  section{ padding:9vh 6vw; max-width:960px; margin:0 auto; }
+  .section-head{ text-align:center; margin-bottom:4.5rem; }
+  .section-head .eyebrow{ margin-bottom:0.9rem; }
+  .section-head h2{ font-size:clamp(1.7rem, 3.6vw, 2.4rem); }
+
+  /* ---------- schedule (timeline) ---------- */
+  .timeline{
+    position:relative;
+    max-width:640px;
+    margin:0 auto;
+  }
+  .timeline::before{
+    content:'';
+    position:absolute;
+    left:88px;
+    top:0.4rem;
+    bottom:0.4rem;
+    width:1px;
+    background:var(--line);
+  }
+  .t-item{
+    position:relative;
+    display:grid;
+    grid-template-columns:70px 36px 1fr;
+    align-items:start;
+    gap:0 0;
+    padding-bottom:2.6rem;
+  }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-time{
+    font-family:'Fraunces', serif;
+    font-size:1.05rem;
+    color:var(--gold-soft);
+    padding-top:0.05rem;
+  }
+  .t-dot-col{ display:flex; justify-content:center; }
+  .t-dot{
+    width:9px; height:9px; border-radius:50%;
+    background:var(--gold);
+    margin-top:0.5rem;
+    box-shadow:0 0 0 4px var(--ink), 0 0 0 5px var(--line);
+  }
+  .t-body h3{ font-size:1.08rem; color:var(--cream); font-weight:500; }
+  .t-body p{ color:var(--cream-dim); font-size:0.92rem; margin-top:0.25rem; }
+
+  /* ---------- location ---------- */
+  .location-box{
+    text-align:center;
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:3rem 2rem;
+    background:linear-gradient(180deg, rgba(201,161,91,0.05), transparent);
+  }
+  .location-box h3{ font-size:1.3rem; color:var(--cream); margin-bottom:0.6rem; }
+  .location-box p{ color:var(--cream-dim); }
+  .location-box a{
+    display:inline-block;
+    margin-top:1.6rem;
+    color:var(--ink);
+    background:var(--gold-soft);
+    text-decoration:none;
+    font-size:0.85rem;
+    letter-spacing:0.06em;
+    padding:0.85rem 1.8rem;
+    border-radius:2px;
+    font-weight:600;
+    transition:opacity 0.2s;
+  }
+  .location-box a:hover{ opacity:0.85; }
+
+  /* ---------- gallery ---------- */
+  .gallery{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:0.9rem;
+  }
+  .gallery figure{
+    aspect-ratio:4/5;
+    border-radius:2px;
+    overflow:hidden;
+    background:var(--ink-2);
+    border:1px dashed var(--line);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+  }
+  .gallery figure img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .gallery figure.placeholder span{
+    font-size:0.72rem;
+    color:var(--cream-dim);
+    text-align:center;
+    padding:0 1rem;
+    letter-spacing:0.04em;
+  }
+  .gallery figure:nth-child(4),
+  .gallery figure:nth-child(1){ grid-column:span 1; }
+  @media (max-width:640px){
+    .gallery{ grid-template-columns:repeat(2, 1fr); }
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    text-align:center;
+    padding:6vh 6vw 8vh;
+    color:var(--cream-dim);
+    font-size:0.85rem;
+  }
+  footer .khee-divider{ margin-bottom:2rem; }
+  footer strong{ color:var(--gold-soft); font-weight:500; }
+
+  ::selection{ background:var(--gold); color:var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="eyebrow">Урилга</div>
+  <h1>[Арга хэмжээний нэр] <em>— тавтай морил</em></h1>
+  <div class="hero-meta">
+    <div>📅 <span>[өдөр, сар, он]</span></div>
+    <div>🕐 <span>[эхлэх цаг]</span></div>
+    <div>📍 <span>[газрын нэр]</span></div>
+  </div>
+  <div class="scroll-cue">Доош гүйлгэнэ үү</div>
+</section>
+
+<!-- ===================== SCHEDULE ===================== -->
+<section id="schedule">
+  <div class="section-head">
+    <div class="eyebrow">Хөтөлбөр</div>
+    <h2>Үйл ажиллагааны цагийн хуваарь</h2>
+  </div>
+
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-time">10:00</div>
+      <div class="t-dot-col"><div class="t-dot"></div></div>
+      <div class="t-body">
+        <h3>Зочид хүлээн авах</h3>
+        <p>Бүртгэл, суудалд суух</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">10:30</div>
+      <div class="t-dot-col"><div class="t-dot"></div></div>
+      <div class="t-body">
+        <h3>Нээлтийн үг</h3>
+        <p>[Илтгэгчийн нэр, албан тушаал]</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">11:00</div>
+      <div class="t-dot-col"><div class="t-dot"></div></div>
+      <div class="t-body">
+        <h3>Гол хөтөлбөр</h3>
+        <p>[Дэлгэрэнгүй тайлбар]</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">12:30</div>
+      <div class="t-dot-col"><div class="t-dot"></div></div>
+      <div class="t-body">
+        <h3>Үдийн зоог</h3>
+        <p>[Байршил / нэмэлт мэдээлэл]</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">14:00</div>
+      <div class="t-dot-col"><div class="t-dot"></div></div>
+      <div class="t-body">
+        <h3>Хаалт</h3>
+        <p>Талархал, гэрэл зургийн цаг</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LOCATION ===================== -->
+<section id="location">
+  <div class="section-head">
+    <div class="eyebrow">Байршил</div>
+    <h2>Хаана болох вэ</h2>
+  </div>
+  <div class="location-box">
+    <h3>[Байрны нэр]</h3>
+    <p>[Дэлгэрэнгүй хаяг, орц, давхар гэх мэт]</p>
+    <a href="https://maps.google.com/?q=[хаягаа энд бичих]" target="_blank" rel="noopener">Газрын зураг дээр харах →</a>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section id="gallery">
+  <div class="section-head">
+    <div class="eyebrow">Зургийн цомог</div>
+    <h2>Үйл ажиллагааны зураг</h2>
+  </div>
+  <div class="gallery">
+    <figure class="placeholder"><span>Зураг 1<br>энд байрлана</span></figure>
+    <figure class="placeholder"><span>Зураг 2<br>энд байрлана</span></figure>
+    <figure class="placeholder"><span>Зураг 3<br>энд байрлана</span></figure>
+    <figure class="placeholder"><span>Зураг 4<br>энд байрлана</span></figure>
+    <figure class="placeholder"><span>Зураг 5<br>энд байрлана</span></figure>
+    <figure class="placeholder"><span>Зураг 6<br>энд байрлана</span></figure>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <svg class="khee-divider" viewBox="0 0 420 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="0" y1="12" x2="150" y2="12" stroke="#c9a15b" stroke-opacity="0.5"/>
+    <line x1="270" y1="12" x2="420" y2="12" stroke="#c9a15b" stroke-opacity="0.5"/>
+    <path d="M175 4 L183 12 L175 20 L167 12 Z" stroke="#c9a15b" stroke-width="1.2" fill="none"/>
+    <path d="M210 4 L218 12 L210 20 L202 12 Z" stroke="#c9a15b" stroke-width="1.2" fill="none"/>
+    <path d="M245 4 L253 12 L245 20 L237 12 Z" stroke="#c9a15b" stroke-width="1.2" fill="none"/>
+  </svg>
+  Таныг <strong>[Арга хэмжээний нэр]</strong> дээр хүлээн авахдаа таатай байх болно.
+</footer>
+
+</body>
+</html>
