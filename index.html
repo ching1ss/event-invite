@@ -10,7 +10,7 @@
 <style>
   :root{
     --ink:#123629;
-    --ink-2:#1c222c;
+    --ink-2:#1a4736;
     --gold:#c9a15b;
     --gold-soft:#e3c98a;
     --cream:#f3ede0;
@@ -181,7 +181,7 @@
     border-radius:2px;
     overflow:hidden;
     background:var(--ink-2);
-    border:1px dashed var(--line);
+    border:1px solid var(--line);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -196,6 +196,52 @@
     text-align:center;
     padding:0 1rem;
     letter-spacing:0.04em;
+  }
+  .gallery figure img{ transition:transform 0.3s ease; }
+  .gallery figure:hover img{ transform:scale(1.04); }
+  .dl-link{
+    position:absolute;
+    bottom:0; left:0; right:0;
+    padding:0.6rem 0;
+    text-align:center;
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--cream);
+    text-decoration:none;
+    background:linear-gradient(0deg, rgba(0,0,0,0.65), transparent);
+    opacity:0;
+    transition:opacity 0.25s ease;
+  }
+  .gallery figure:hover .dl-link,
+  .gallery figure:focus-within .dl-link{ opacity:1; }
+  .gallery-note{
+    text-align:center;
+    color:var(--cream-dim);
+    font-size:0.82rem;
+    margin-top:1.6rem;
+  }
+  .extra-img{ display:none; }
+  .gallery-controls{
+    display:flex;
+    justify-content:center;
+    margin-top:2.4rem;
+  }
+  .see-more-btn{
+    background:transparent;
+    border:1px solid var(--gold);
+    color:var(--gold-soft);
+    font-family:'Inter', sans-serif;
+    font-size:0.82rem;
+    letter-spacing:0.06em;
+    padding:0.85rem 2rem;
+    border-radius:2px;
+    cursor:pointer;
+    transition:background 0.2s ease, color 0.2s ease;
+  }
+  .see-more-btn:hover{
+    background:var(--gold-soft);
+    color:var(--ink);
   }
   .gallery figure:nth-child(4),
   .gallery figure:nth-child(1){ grid-column:span 1; }
@@ -221,11 +267,11 @@
 <!-- ===================== HERO ===================== -->
 <section class="hero">
   <div class="eyebrow">Урилга</div>
-  <h1>Хилийн цэргийн 0245-р ангийн 50 жил <em> тавтай морил</em></h1>
+  <h1>[Арга хэмжээний нэр] <em>— тавтай морил</em></h1>
   <div class="hero-meta">
-    <div>📅 <span>[12, 09, 2026]</span></div>
-    <div>🕐 <span>[11:00]</span></div>
-    <div>📍 <span>[Хилийн цэргийн 0245 анги]</span></div>
+    <div>📅 <span>[өдөр, сар, он]</span></div>
+    <div>🕐 <span>[эхлэх цаг]</span></div>
+    <div>📍 <span>[газрын нэр]</span></div>
   </div>
   <div class="scroll-cue">Доош гүйлгэнэ үү</div>
 </section>
@@ -288,9 +334,9 @@
     <h2>Хаана болох вэ</h2>
   </div>
   <div class="location-box">
-    <h3>Хилийн цэргийн 0245 дугаар анги </h3>
-    <p>[]</p>
-    <a href="https://maps.app.goo.gl/s9fhBRhfv71FNxodA" target="_blank" rel="noopener">Газрын зураг дээр харах →</a>
+    <h3>[Байрны нэр]</h3>
+    <p>[Дэлгэрэнгүй хаяг, орц, давхар гэх мэт]</p>
+    <a href="https://maps.google.com/?q=[хаягаа энд бичих]" target="_blank" rel="noopener">Газрын зураг дээр харах →</a>
   </div>
 </section>
 
@@ -300,14 +346,11 @@
     <div class="eyebrow">Зургийн цомог</div>
     <h2>Үйл ажиллагааны зураг</h2>
   </div>
-  <div class="gallery">
-    <figure><img src="images/zurag1.jpg" alt="Арга хэмжээний зураг"></figure>
-    <figure><img src="images/zurag2.jpg" alt="Арга хэмжээний зураг"></figure>
-    <figure class="placeholder"><span>Зураг 3<br>энд байрлана</span></figure>
-    <figure class="placeholder"><span>Зураг 4<br>энд байрлана</span></figure>
-    <figure class="placeholder"><span>Зураг 5<br>энд байрлана</span></figure>
-    <figure class="placeholder"><span>Зураг 6<br>энд байрлана</span></figure>
+  <div class="gallery" id="galleryGrid"></div>
+  <div class="gallery-controls">
+    <button id="seeMoreBtn" class="see-more-btn">Бүгдийг үзэх</button>
   </div>
+  <p class="gallery-note">Зураг дээр хулгана аваачихад "Татах" товч гарч ирнэ. Гар утсанд зурган дээр удаан дарж хадгална.</p>
 </section>
 
 <!-- ===================== FOOTER ===================== -->
@@ -321,6 +364,52 @@
   </svg>
   Таныг <strong>[Арга хэмжээний нэр]</strong> дээр хүлээн авахдаа таатай байх болно.
 </footer>
+
+<script>
+  /* ===================================================================
+     ЗУРГИЙН ЖАГСААЛТ
+     Шинэ зураг нэмэхдээ доорх жагсаалтад файлын нэрийг нэмнэ.
+     Зураг бүр "images/" folder дотор байх ёстой.
+     Жишээ: 'zurag7.jpg', 'zurag8.jpg' гэх мэт үргэлжлүүлж бичнэ.
+  =================================================================== */
+  const galleryImages = [
+    'zurag1.jpg',
+    'zurag2.jpg',
+    'zurag3.jpg',
+    'zurag4.jpg',
+    'zurag5.jpg',
+    'zurag6.jpg'
+    // ,'zurag7.jpg'  <-- ингэж таслал тавьж нэмээд явна
+  ];
+
+  const INITIAL_COUNT = 6; /* нүүр хуудсан дээр хэдэн зураг харагдахыг заана */
+  const grid = document.getElementById('galleryGrid');
+  const btn = document.getElementById('seeMoreBtn');
+
+  galleryImages.forEach((file, i) => {
+    const fig = document.createElement('figure');
+    if (i >= INITIAL_COUNT) fig.classList.add('extra-img');
+    fig.innerHTML =
+      '<img src="images/' + file + '" alt="Арга хэмжээний зураг ' + (i + 1) + '" loading="lazy">' +
+      '<a class="dl-link" href="images/' + file + '" download>⬇ Татах</a>';
+    grid.appendChild(fig);
+  });
+
+  if (galleryImages.length <= INITIAL_COUNT) {
+    btn.style.display = 'none';
+  } else {
+    const hiddenCount = galleryImages.length - INITIAL_COUNT;
+    btn.textContent = 'Бүх зургийг үзэх (+' + hiddenCount + ')';
+    let expanded = false;
+    btn.addEventListener('click', () => {
+      expanded = !expanded;
+      document.querySelectorAll('.extra-img').forEach(f => {
+        f.style.display = expanded ? 'flex' : 'none';
+      });
+      btn.textContent = expanded ? 'Хураах' : 'Бүх зургийг үзэх (+' + hiddenCount + ')';
+    });
+  }
+</script>
 
 </body>
 </html>
