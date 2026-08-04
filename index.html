@@ -17,6 +17,19 @@
     --cream-dim:rgba(243,237,224,0.62);
     --line:rgba(243,237,224,0.14);
     --sage:#6b7a63;
+
+    /* =============================================================
+       ТЕКСТИЙН ХЭМЖЭЭ — эндээс тоог томруулж/жижигрүүлж болно.
+       Нэгж нь "rem" (1rem = өдрийн энгийн текстийн хэмжээ).
+       Тоог ихэсгэвэл том, багасгавал жижиг болно.
+    ============================================================= */
+    --fs-hero-title: 4.4rem;      /* нүүр хуудасны том гарчиг */
+    --fs-greeting-title: 2rem;    /* мэндчилгээний гарчиг */
+    --fs-greeting-body: 1.15rem;  /* мэндчилгээний үг */
+    --fs-h2: 2.4rem;              /* хэсгүүдийн гарчиг (Хөтөлбөр, Байршил г.м) */
+    --fs-eyebrow: 0.72rem;        /* жижиг том үсгээр бичсэн шошго */
+    --fs-body: 1rem;              /* энгийн текст */
+    --fs-meta: 0.95rem;           /* огноо/цаг/газрын мөр */
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -53,14 +66,14 @@
       var(--ink);
   }
   .eyebrow{
-    font-size:0.72rem;
+    font-size:var(--fs-eyebrow);
     letter-spacing:0.32em;
     text-transform:uppercase;
     color:var(--gold-soft);
     margin-bottom:1.6rem;
   }
   .hero h1{
-    font-size:clamp(2.4rem, 6vw, 4.4rem);
+    font-size:clamp(2.4rem, 6vw, var(--fs-hero-title));
     line-height:1.08;
     max-width:16ch;
     color:var(--cream);
@@ -75,7 +88,7 @@
     flex-wrap:wrap;
     gap:0.6rem 2.2rem;
     justify-content:center;
-    font-size:0.95rem;
+    font-size:var(--fs-meta);
     color:var(--cream-dim);
   }
   .hero-meta span{ color:var(--cream); font-weight:500; }
@@ -103,7 +116,31 @@
   section{ padding:9vh 6vw; max-width:960px; margin:0 auto; }
   .section-head{ text-align:center; margin-bottom:4.5rem; }
   .section-head .eyebrow{ margin-bottom:0.9rem; }
-  .section-head h2{ font-size:clamp(1.7rem, 3.6vw, 2.4rem); }
+  .section-head h2{ font-size:clamp(1.7rem, 3.6vw, var(--fs-h2)); }
+
+  /* ---------- greeting ---------- */
+  .greeting{ max-width:680px; }
+  .greeting-title{
+    font-size:clamp(1.5rem, 3.4vw, var(--fs-greeting-title));
+    text-align:center;
+    color:var(--cream);
+    margin-bottom:1.8rem;
+  }
+  .greeting-body{
+    font-size:var(--fs-greeting-body);
+    color:var(--cream-dim);
+    text-align:center;
+    line-height:1.85;
+  }
+  .greeting-body p{ margin-bottom:1.1rem; }
+  .greeting-signature{
+    margin-top:2.2rem;
+    text-align:center;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    color:var(--gold-soft);
+  }
 
   /* ---------- schedule (timeline) ---------- */
   .timeline{
@@ -274,6 +311,22 @@
     <div>📍 <span>[газрын нэр]</span></div>
   </div>
   <div class="scroll-cue">Доош гүйлгэнэ үү</div>
+</section>
+
+<!-- ===================== МЭНДЧИЛГЭЭ ===================== -->
+<!-- Доорх текстийг өөрийн мэндчилгээний үгээр солино -->
+<section id="greeting">
+  <div class="section-head">
+    <div class="eyebrow">Мэндчилгээ</div>
+  </div>
+  <div class="greeting">
+    <h3 class="greeting-title">Эрхэм зочид оо, тавтай морилно уу!</h3>
+    <div class="greeting-body">
+      <p>[Мэндчилгээний эхний хэсэг — арга хэмжээний учир холбогдол, зорилгыг товч дурдана.]</p>
+      <p>[Хоёр дахь хэсэг — зочдод талархал илэрхийлж, өдрийг хамт өнгөрөөхийг урьж байгаагаа бичнэ.]</p>
+    </div>
+    <div class="greeting-signature">— [Нэр, албан тушаал]</div>
+  </div>
 </section>
 
 <!-- ===================== SCHEDULE ===================== -->
