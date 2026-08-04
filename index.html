@@ -280,6 +280,40 @@
     background:var(--gold-soft);
     color:var(--ink);
   }
+
+  /* ---------- lightbox ---------- */
+  .gallery figure img{ cursor:zoom-in; }
+  .lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(10,14,11,0.92);
+    z-index:999;
+    align-items:center;
+    justify-content:center;
+    padding:5vh 5vw;
+  }
+  .lightbox.active{ display:flex; }
+  .lightbox img{
+    max-width:100%;
+    max-height:90vh;
+    border-radius:2px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.5);
+  }
+  .lightbox-close{
+    position:absolute;
+    top:2.2rem;
+    right:2.8rem;
+    font-size:2.4rem;
+    line-height:1;
+    color:var(--cream);
+    cursor:pointer;
+    font-family:'Inter', sans-serif;
+    font-weight:400;
+    opacity:0.8;
+    transition:opacity 0.2s;
+  }
+  .lightbox-close:hover{ opacity:1; }
   .gallery figure:nth-child(4),
   .gallery figure:nth-child(1){ grid-column:span 1; }
   @media (max-width:640px){
@@ -304,11 +338,11 @@
 <!-- ===================== HERO ===================== -->
 <section class="hero">
   <div class="eyebrow">Урилга</div>
-  <h1>Хилийн цэргийн 0245 дугаар анги <em>  тавтай морил</em></h1>
+  <h1>[Арга хэмжээний нэр] <em>— тавтай морил</em></h1>
   <div class="hero-meta">
-    <div>📅 <span>[11-12:09:2026]</span></div>
-    <div>🕐 <span>[10:00]</span></div>
-    <div>📍 <span>[Хилийн цэргийн 0245 дугаар анги ]</span></div>
+    <div>📅 <span>[өдөр, сар, он]</span></div>
+    <div>🕐 <span>[эхлэх цаг]</span></div>
+    <div>📍 <span>[газрын нэр]</span></div>
   </div>
   <div class="scroll-cue">Доош гүйлгэнэ үү</div>
 </section>
@@ -320,11 +354,10 @@
     <div class="eyebrow">Мэндчилгээ</div>
   </div>
   <div class="greeting">
-    <h3 class="greeting-title">   Эрхэм зочид оо, тавтай морилно уу!</h3>
+    <h3 class="greeting-title">Эрхэм зочид оо, тавтай морилно уу!</h3>
     <div class="greeting-body">
-      <p>Бүгд найрамдах Монгол Ард Улсын Баатар Бэгзийн Гивааны нэрэмжит Хилийн цэргийн 0245 дугаар анги үүсэн байгуулагдсаны түүхт 50 жилийн ойн баярын мэндийг эрхэм хүндэт генерал, офицер, ахлагч, төрийн үйлчилгээний алба хаагч, түрүүч байлдагч, ахмад хилчид, зочид төлөөлөгч та бүхэнд өргөн дэвшүүлье. </p>
-      <p>Монгол улсынхаа халдашгүй дархан байдлыг сахин хамгаалж буй үе үеийн хилчдээ уул ус нь жигдэрч, ургамал амьтан багширч, нүд хужирлаж, сэтгэл баясгаласан үржил шимт, уран байгалийн төгс үзэсгэлэн бүрдсэн энэ сайхан өргөн дэлгэр нутгийн эзэд гэдгээрээ та бид бахархах учиртай. </p>
-     <p>[Хоёр дахь хэсэг — зочдод талархал илэрхийлж, өдрийг хамт өнгөрөөхийг урьж байгаагаа бичнэ.]</p>
+      <p>[Мэндчилгээний эхний хэсэг — арга хэмжээний учир холбогдол, зорилгыг товч дурдана.]</p>
+      <p>[Хоёр дахь хэсэг — зочдод талархал илэрхийлж, өдрийг хамт өнгөрөөхийг урьж байгаагаа бичнэ.]</p>
     </div>
     <div class="greeting-signature">— [Нэр, албан тушаал]</div>
   </div>
@@ -404,8 +437,14 @@
   <div class="gallery-controls">
     <button id="seeMoreBtn" class="see-more-btn">Бүгдийг үзэх</button>
   </div>
-  <p class="gallery-note">Зураг дээр хулгана аваачихад "Татах" товч гарч ирнэ. Гар утсанд зурган дээр удаан дарж хадгална.</p>
+  <p class="gallery-note">Зураг дээр дарахад томоор нээгдэнэ. Хулгана аваачихад "Татах" товч гарч ирнэ. Гар утсанд зурган дээр удаан дарж хадгална.</p>
 </section>
+
+<!-- ===================== LIGHTBOX (зураг томоор харах) ===================== -->
+<div id="lightbox" class="lightbox">
+  <span class="lightbox-close" id="lightboxClose">&times;</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
 
 <!-- ===================== FOOTER ===================== -->
 <footer>
@@ -432,8 +471,7 @@
     'zurag3.jpg',
     'zurag4.jpg',
     'zurag5.jpg',
-    'zurag6.jpg',
-    'zurag7.jpg'
+    'zurag6.jpg'
     // ,'zurag7.jpg'  <-- ингэж таслал тавьж нэмээд явна
   ];
 
@@ -464,6 +502,34 @@
       btn.textContent = expanded ? 'Хураах' : 'Бүх зургийг үзэх (+' + hiddenCount + ')';
     });
   }
+
+  /* ===================================================================
+     LIGHTBOX — зураг дээр дарахад томоор харуулах
+  =================================================================== */
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  grid.addEventListener('click', (e) => {
+    if (e.target.tagName === 'IMG') {
+      lightboxImg.src = e.target.src;
+      lightboxImg.alt = e.target.alt;
+      lightbox.classList.add('active');
+    }
+  });
+
+  function closeLightbox(){
+    lightbox.classList.remove('active');
+    lightboxImg.src = '';
+  }
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox(); /* дэвсгэр дээр дарахад хаагдана */
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLightbox();
+  });
 </script>
 
 </body>
