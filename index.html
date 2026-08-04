@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Арга хэмжээний урилга</title>
+
+<!-- =====================================================
+     OPEN GRAPH — Facebook/Messenger/WhatsApp/Viber зэрэгт
+     линк paste хийхэд зураг, гарчиг, тайлбар харуулна.
+     Доорх утгуудыг өөрийн мэдээллээр солино.
+===================================================== -->
+<meta property="og:title" content="[Арга хэмжээний нэр]">
+<meta property="og:description" content="[Богино тайлбар — жишээ нь: Танийг манай арга хэмжээнд урьж байна]">
+<meta property="og:image" content="https://ching1ss.github.io/event-invite/images/cover.jpg">
+<meta property="og:url" content="https://ching1ss.github.io/event-invite/">
+<meta property="og:type" content="website">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -330,6 +342,52 @@
   footer .khee-divider{ margin-bottom:2rem; }
   footer strong{ color:var(--gold-soft); font-weight:500; }
 
+  /* ---------- countdown ---------- */
+  .countdown-section{
+    text-align:center;
+    padding:6vh 6vw 8vh;
+    background:var(--ink-2);
+    border-top:1px solid var(--line);
+  }
+  .countdown-eyebrow{
+    font-size:var(--fs-eyebrow);
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    margin-bottom:1.6rem;
+  }
+  .countdown-grid{
+    display:flex;
+    justify-content:center;
+    gap:1rem;
+    flex-wrap:wrap;
+  }
+  .countdown-box{
+    min-width:84px;
+    padding:1.2rem 0.6rem;
+    border:1px solid var(--line);
+    border-radius:2px;
+    background:var(--ink);
+  }
+  .countdown-num{
+    font-family:'Fraunces', serif;
+    font-size:2.2rem;
+    color:var(--gold-soft);
+    line-height:1;
+  }
+  .countdown-label{
+    margin-top:0.5rem;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--cream-dim);
+  }
+  .countdown-ended{
+    font-size:1.2rem;
+    color:var(--gold-soft);
+    font-family:'Fraunces', serif;
+  }
+
   ::selection{ background:var(--gold); color:var(--ink); }
 </style>
 </head>
@@ -338,11 +396,11 @@
 <!-- ===================== HERO ===================== -->
 <section class="hero">
   <div class="eyebrow">Урилга</div>
-  <h1>Хилийн цэргийн 0245 дугаар анги 50 жил <em> тавтай морил</em></h1>
+  <h1>[Арга хэмжээний нэр] <em>— тавтай морил</em></h1>
   <div class="hero-meta">
-    <div>📅 <span>11-12:09:2026</span></div>
-    <div>🕐 <span>11:00</span></div>
-    <div>📍 <span>Хилийн цэргийн 0245 дугаар анги</span></div>
+    <div>📅 <span>[өдөр, сар, он]</span></div>
+    <div>🕐 <span>[эхлэх цаг]</span></div>
+    <div>📍 <span>[газрын нэр]</span></div>
   </div>
   <div class="scroll-cue">Доош гүйлгэнэ үү</div>
 </section>
@@ -356,7 +414,7 @@
   <div class="greeting">
     <h3 class="greeting-title">Эрхэм зочид оо, тавтай морилно уу!</h3>
     <div class="greeting-body">
-      <p>Бүгд найрамдах Монгол Ард Улсын Баатар Бэгзийн Гивааны нэрэмжит Хилийн цэргийн 0245 дугаар анги үүсэн байгуулагдсаны түүхт 50 жилийн ойн баярын мэндийг эрхэм хүндэт генерал, офицер, ахлагч, төрийн үйлчилгээний алба хаагч, түрүүч байлдагч, ахмад хилчид, зочид төлөөлөгч та бүхэнд өргөн дэвшүүлье.</p>
+      <p>[Мэндчилгээний эхний хэсэг — арга хэмжээний учир холбогдол, зорилгыг товч дурдана.]</p>
       <p>[Хоёр дахь хэсэг — зочдод талархал илэрхийлж, өдрийг хамт өнгөрөөхийг урьж байгаагаа бичнэ.]</p>
     </div>
     <div class="greeting-signature">— [Нэр, албан тушаал]</div>
@@ -423,7 +481,7 @@
   <div class="location-box">
     <h3>[Байрны нэр]</h3>
     <p>[Дэлгэрэнгүй хаяг, орц, давхар гэх мэт]</p>
-    <a href="https://maps.app.goo.gl/8MGFFns487yVKp45A" target="_blank" rel="noopener">Газрын зураг дээр харах →</a>
+    <a href="https://maps.google.com/?q=[хаягаа энд бичих]" target="_blank" rel="noopener">Газрын зураг дээр харах →</a>
   </div>
 </section>
 
@@ -457,6 +515,30 @@
   </svg>
   Таныг <strong>[Арга хэмжээний нэр]</strong> дээр хүлээн авахдаа таатай байх болно.
 </footer>
+
+<!-- ===================== COUNTDOWN TIMER ===================== -->
+<!-- Доорх script хэсэгт огноогоо тохируулна -->
+<section class="countdown-section">
+  <div class="countdown-eyebrow">Хугацаа үлдлээ</div>
+  <div class="countdown-grid" id="countdownGrid">
+    <div class="countdown-box">
+      <div class="countdown-num" id="cdDays">--</div>
+      <div class="countdown-label">Хоног</div>
+    </div>
+    <div class="countdown-box">
+      <div class="countdown-num" id="cdHours">--</div>
+      <div class="countdown-label">Цаг</div>
+    </div>
+    <div class="countdown-box">
+      <div class="countdown-num" id="cdMinutes">--</div>
+      <div class="countdown-label">Минут</div>
+    </div>
+    <div class="countdown-box">
+      <div class="countdown-num" id="cdSeconds">--</div>
+      <div class="countdown-label">Секунд</div>
+    </div>
+  </div>
+</section>
 
 <script>
   /* ===================================================================
@@ -531,6 +613,45 @@
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
   });
+
+  /* ===================================================================
+     COUNTDOWN TIMER
+     Доорх огноог арга хэмжээнийхээ бодит огноо, цагаар СОЛИНО.
+     Формат: 'ОН-САР-ӨДӨРTЦАГ:МИНУТ:00'  (24 цагийн форматтай)
+     Жишээ: 2026-09-15 өдрийн 10:00 цагт эхэлдэг бол:
+     '2026-09-15T10:00:00'
+  =================================================================== */
+  const eventDate = new Date('2026-09-15T10:00:00');
+
+  const cdDays = document.getElementById('cdDays');
+  const cdHours = document.getElementById('cdHours');
+  const cdMinutes = document.getElementById('cdMinutes');
+  const cdSeconds = document.getElementById('cdSeconds');
+  const countdownGrid = document.getElementById('countdownGrid');
+
+  function updateCountdown(){
+    const now = new Date();
+    const diff = eventDate - now;
+
+    if (diff <= 0){
+      countdownGrid.innerHTML = '<div class="countdown-ended">Арга хэмжээ эхэллээ!</div>';
+      clearInterval(countdownTimer);
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    cdDays.textContent = String(days).padStart(2, '0');
+    cdHours.textContent = String(hours).padStart(2, '0');
+    cdMinutes.textContent = String(minutes).padStart(2, '0');
+    cdSeconds.textContent = String(seconds).padStart(2, '0');
+  }
+
+  updateCountdown();
+  const countdownTimer = setInterval(updateCountdown, 1000);
 </script>
 
 </body>
