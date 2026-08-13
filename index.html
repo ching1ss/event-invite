@@ -1,6 +1,3 @@
-
-
-Event · HTML
 <!DOCTYPE html>
 <html lang="mn">
 <head>
@@ -13,8 +10,8 @@ Event · HTML
      линк paste хийхэд зураг, гарчиг, тайлбар харуулна.
      Доорх утгуудыг өөрийн мэдээллээр солино.
 ===================================================== -->
-<meta property="og:title" content="Хилийн цэргийн 0245 дугаар анги 50 жил">
-<meta property="og:description" content="Танийг манай арга хэмжээнд урьж байна">
+<meta property="og:title" content="[Арга хэмжээний нэр]">
+<meta property="og:description" content="[Богино тайлбар — жишээ нь: Танийг манай арга хэмжээнд урьж байна]">
 <meta property="og:image" content="https://ching1ss.github.io/event-invite/images/cover.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="1200">
@@ -136,7 +133,22 @@ Event · HTML
   .section-head h2{ font-size:clamp(1.7rem, 3.6vw, var(--fs-h2)); }
  
   /* ---------- greeting ---------- */
-  .greeting{ max-width:680px; margin:0 auto; }
+  .greeting{ max-width:680px; margin:0 auto; display:flex; flex-direction:column; align-items:center; }
+  .greeting-photo{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    overflow:hidden;
+    border:2px solid var(--gold);
+    margin-bottom:2rem;
+    flex-shrink:0;
+  }
+  .greeting-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
   .greeting-title{
     font-size:clamp(1.5rem, 3.4vw, var(--fs-greeting-title));
     text-align:center;
@@ -438,11 +450,11 @@ Event · HTML
 <!-- ===================== HERO ===================== -->
 <section class="hero">
   <div class="eyebrow">Арга хэмжээний урилга</div>
-  <h1>Хилийн цэргийн 0245 дугаар анги 50 жилд <em> Тавтай морил</em></h1>
+  <h1>[Арга хэмжээний нэр] <em>— тавтай морил</em></h1>
   <div class="hero-meta">
-    <div>📅 <span>12-14:09:2026</span></div>
-    <div>🕐 <span>11:00</span></div>
-    <div>📍 <span>Хилийн цэргийн 0245 дугаар анги</span></div>
+    <div>📅 <span>[өдөр, сар, он]</span></div>
+    <div>🕐 <span>[эхлэх цаг]</span></div>
+    <div>📍 <span>[газрын нэр]</span></div>
   </div>
   <div class="scroll-cue">Доош гүйлгэнэ үү</div>
 </section>
@@ -454,10 +466,13 @@ Event · HTML
     <div class="eyebrow">Мэндчилгээ</div>
   </div>
   <div class="greeting">
+    <div class="greeting-photo">
+      <img src="images/mendchilgee.jpg" alt="[Нэр]">
+    </div>
     <h3 class="greeting-title">Эрхэм зочид оо, тавтай морилно уу!</h3>
     <div class="greeting-body">
-      <p>Бүгд найрамдах Монгол Ард Улсын Баатар Бэгзийн Гивааны нэрэмжит Хилийн цэргийн 0245 дугаар анги үүсэн байгуулагдсаны түүхт 50 жилийн ойн баярын мэндийг эрхэм хүндэт генерал, офицер, ахлагч, төрийн үйлчилгээний алба хаагч, түрүүч байлдагч, ахмад хилчид, зочид төлөөлөгч та бүхэнд өргөн дэвшүүлье.</p>
-      <p>Өнгөрсөн 50 жилийн турш хөгжил дэвшилд үнэтэй хувь нэмрээ оруулсан ахмад үеийнхэн, өнөө цагийн түүхийг бүтээж буй, ирээдүйн түүхийг бүтээгчид болох залуус хилчид та бүхэнд амжилт бүтээл, сайн сайхны бүхнийг хүсэн ерөөж, ирээдүйн зуунд улам бүр хөгжин дэвшиж, хилийн халдашгүй дархан байдлаа бататгаж, хөгжил цэцэглэлтийн их замыг амжилт, бүтээлээр дүүрэн туулахын ерөөл өргөе.</p>
+      <p>[Мэндчилгээний эхний хэсэг — арга хэмжээний учир холбогдол, зорилгыг товч дурдана.]</p>
+      <p>[Хоёр дахь хэсэг — зочдод талархал илэрхийлж, өдрийг хамт өнгөрөөхийг урьж байгаагаа бичнэ.]</p>
     </div>
     <div class="greeting-signature">— [Нэр, албан тушаал]</div>
   </div>
@@ -479,38 +494,44 @@ Event · HTML
   <!-- ============ 1-Р ӨДӨР ============ -->
   <div class="timeline day-panel active" data-day-panel="1">
     <div class="t-item">
-      <div class="t-time"></div>
+      <div class="t-time">10:00</div>
       <div class="t-dot-col"><div class="t-dot"></div></div>
       <div class="t-body">
-        <h3>Зочид төлөөлөгчдийг ангийн байрлалд угтаж хүлээн  авах</h3>
-        <p>Хошууч Б.Гантулга</p>
+        <h3>Зочид хүлээн авах</h3>
+        <p>Бүртгэл, суудалд суух</p>
       </div>
     </div>
     <div class="t-item">
-      <div class="t-time"></div>
+      <div class="t-time">10:30</div>
       <div class="t-dot-col"><div class="t-dot"></div></div>
       <div class="t-body">
-        <h3>Хүндэтгэлийн хэсэгт дурсгалын зураг авахуулж, гарын бэлэг өгөх</h3>
-        <p>Дэд хурандаа М.Үнэнбат</p>
+        <h3>Нээлтийн үг</h3>
+        <p>[Илтгэгчийн нэр, албан тушаал]</p>
       </div>
     </div>
     <div class="t-item">
-      <div class="t-time"></div>
+      <div class="t-time">11:00</div>
       <div class="t-dot-col"><div class="t-dot"></div></div>
       <div class="t-body">
-        <h3>Зочид төлөөлөгчдийг хооллох “Ангийн зочид буудал, хүндэтгэлийн өргөө”</h3>
-        <p>Дэд хурандаа Ш.Баттөгс</p>
+        <h3>Гол хөтөлбөр</h3>
+        <p>[Дэлгэрэнгүй тайлбар]</p>
       </div>
     </div>
     <div class="t-item">
-      <div class="t-time"></div>
+      <div class="t-time">12:30</div>
       <div class="t-dot-col"><div class="t-dot"></div></div>
       <div class="t-body">
-        <h3>Зочдыг байрлуулах “Хархираа зочид буудал”, “Чандмань люкс тур” амралтын газар </h3>
-        <p>Хошууч Б.Гантулга</p>
+        <h3>Үдийн зоог</h3>
+        <p>[Байршил / нэмэлт мэдээлэл]</p>
       </div>
     </div>
-    
+    <div class="t-item">
+      <div class="t-time">18:00</div>
+      <div class="t-dot-col"><div class="t-dot"></div></div>
+      <div class="t-body">
+        <h3>1-р өдрийн хаалт</h3>
+        <p>[Нэмэлт мэдээлэл]</p>
+      </div>
     </div>
   </div>
  
