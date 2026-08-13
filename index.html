@@ -4,14 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Арга хэмжээний урилга</title>
-
-
-<meta property="og:title" content="Хилийн цэргийн 0245 дугаар анги 50 жил">
-<meta property="og:description" content="Танийг манай арга хэмжээнд урьж байна">
+ 
+<!-- =====================================================
+     OPEN GRAPH — Facebook/Messenger/WhatsApp/Viber зэрэгт
+     линк paste хийхэд зураг, гарчиг, тайлбар харуулна.
+     Доорх утгуудыг өөрийн мэдээллээр солино.
+===================================================== -->
+<meta property="og:title" content="[Арга хэмжээний нэр]">
+<meta property="og:description" content="[Богино тайлбар — жишээ нь: Танийг манай арга хэмжээнд урьж байна]">
 <meta property="og:image" content="https://ching1ss.github.io/event-invite/images/cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
 <meta property="og:url" content="https://ching1ss.github.io/event-invite/">
 <meta property="og:type" content="website">
-
+ 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -25,7 +31,7 @@
     --cream-dim:rgba(243,237,224,0.62);
     --line:rgba(243,237,224,0.14);
     --sage:#6b7a63;
-
+ 
     /* =============================================================
        ТЕКСТИЙН ХЭМЖЭЭ — эндээс тоог томруулж/жижигрүүлж болно.
        Нэгж нь "rem" (1rem = өдрийн энгийн текстийн хэмжээ).
@@ -35,7 +41,7 @@
     --fs-greeting-title: 2rem;    /* мэндчилгээний гарчиг */
     --fs-greeting-body: 1.15rem;  /* мэндчилгээний үг */
     --fs-h2: 2.4rem;              /* хэсгүүдийн гарчиг (Хөтөлбөр, Байршил г.м) */
-    --fs-eyebrow: 1.3rem;        /* жижиг том үсгээр бичсэн шошго */
+    --fs-eyebrow: 0.72rem;        /* жижиг том үсгээр бичсэн шошго */
     --fs-body: 1rem;              /* энгийн текст */
     --fs-meta: 0.95rem;           /* огноо/цаг/газрын мөр */
   }
@@ -49,7 +55,7 @@
     overflow-x:hidden;
   }
   h1,h2,h3{ font-family:'Fraunces', serif; font-weight:500; letter-spacing:0.01em; }
-
+ 
   /* ---------- decorative motif ---------- */
   .khee-divider{
     width:100%;
@@ -58,7 +64,7 @@
     display:block;
     opacity:0.75;
   }
-
+ 
   /* ---------- hero ---------- */
   .hero{
     min-height:100svh;
@@ -120,12 +126,12 @@
     animation:pulse 2.2s ease-in-out infinite;
   }
   @keyframes pulse{ 0%,100%{opacity:0.3;} 50%{opacity:1;} }
-
+ 
   section{ padding:9vh 6vw; max-width:960px; margin:0 auto; }
   .section-head{ text-align:center; margin-bottom:4.5rem; }
   .section-head .eyebrow{ margin-bottom:0.9rem; }
   .section-head h2{ font-size:clamp(1.7rem, 3.6vw, var(--fs-h2)); }
-
+ 
   /* ---------- greeting ---------- */
   .greeting{ max-width:680px; margin:0 auto; }
   .greeting-title{
@@ -149,7 +155,44 @@
     font-size:1.15rem;
     color:var(--gold-soft);
   }
-
+ 
+  /* ---------- day tabs ---------- */
+  .day-tabs{
+    display:flex;
+    justify-content:center;
+    gap:0.8rem;
+    margin-bottom:3rem;
+  }
+  .day-tab{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--cream-dim);
+    font-family:'Fraunces', serif;
+    font-size:1rem;
+    padding:0.9rem 1.8rem;
+    border-radius:2px;
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:0.3rem;
+    transition:border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  }
+  .day-tab span{
+    font-family:'Inter', sans-serif;
+    font-size:0.7rem;
+    letter-spacing:0.04em;
+    color:var(--cream-dim);
+  }
+  .day-tab.active{
+    border-color:var(--gold);
+    color:var(--gold-soft);
+    background:rgba(201,161,91,0.08);
+  }
+  .day-tab.active span{ color:var(--gold-soft); }
+  .day-panel{ display:none; }
+  .day-panel.active{ display:block; }
+ 
   /* ---------- schedule (timeline) ---------- */
   .timeline{
     position:relative;
@@ -189,7 +232,7 @@
   }
   .t-body h3{ font-size:1.08rem; color:var(--cream); font-weight:500; }
   .t-body p{ color:var(--cream-dim); font-size:0.92rem; margin-top:0.25rem; }
-
+ 
   /* ---------- location ---------- */
   .location-box{
     text-align:center;
@@ -214,7 +257,7 @@
     transition:opacity 0.2s;
   }
   .location-box a:hover{ opacity:0.85; }
-
+ 
   /* ---------- gallery ---------- */
   .gallery{
     display:grid;
@@ -288,7 +331,7 @@
     background:var(--gold-soft);
     color:var(--ink);
   }
-
+ 
   /* ---------- lightbox ---------- */
   .gallery figure img{ cursor:zoom-in; }
   .lightbox{
@@ -327,7 +370,7 @@
   @media (max-width:640px){
     .gallery{ grid-template-columns:repeat(2, 1fr); }
   }
-
+ 
   /* ---------- footer ---------- */
   footer{
     text-align:center;
@@ -337,7 +380,7 @@
   }
   footer .khee-divider{ margin-bottom:2rem; }
   footer strong{ color:var(--gold-soft); font-weight:500; }
-
+ 
   /* ---------- countdown ---------- */
   .countdown-section{
     text-align:center;
@@ -383,24 +426,24 @@
     color:var(--gold-soft);
     font-family:'Fraunces', serif;
   }
-
+ 
   ::selection{ background:var(--gold); color:var(--ink); }
 </style>
 </head>
 <body>
-
+ 
 <!-- ===================== HERO ===================== -->
 <section class="hero">
-  <div class="eyebrow">Урилга</div>
-  <h1>Хилийн цэргийн 0245 дугаар анги 50 жилд <em>  тавтай морил</em></h1>
+  <div class="eyebrow">Арга хэмжээний урилга</div>
+  <h1>[Арга хэмжээний нэр] <em>— тавтай морил</em></h1>
   <div class="hero-meta">
-    <div>📅 <span>11-12:09:2026</span></div>
-    <div>🕐 <span>11:00</span></div>
-    <div>📍 <span>Увс Улаангом</span></div>
+    <div>📅 <span>[өдөр, сар, он]</span></div>
+    <div>🕐 <span>[эхлэх цаг]</span></div>
+    <div>📍 <span>[газрын нэр]</span></div>
   </div>
   <div class="scroll-cue">Доош гүйлгэнэ үү</div>
 </section>
-
+ 
 <!-- ===================== МЭНДЧИЛГЭЭ ===================== -->
 <!-- Доорх текстийг өөрийн мэндчилгээний үгээр солино -->
 <section id="greeting">
@@ -408,22 +451,30 @@
     <div class="eyebrow">Мэндчилгээ</div>
   </div>
   <div class="greeting">
+    <h3 class="greeting-title">Эрхэм зочид оо, тавтай морилно уу!</h3>
     <div class="greeting-body">
-      <p>Бүгд найрамдах Монгол Ард Улсын Баатар Бэгзийн Гивааны нэрэмжит Хилийн цэргийн 0245 дугаар анги үүсэн байгуулагдсаны түүхт 50 жилийн ойн баярын мэндийг эрхэм хүндэт генерал, офицер, ахлагч, төрийн үйлчилгээний алба хаагч, түрүүч байлдагч, ахмад хилчид, зочид төлөөлөгч та бүхэнд өргөн дэвшүүлье.</p>
-     <p>Өнгөрсөн 50 жилийн турш хөгжил дэвшилд үнэтэй хувь нэмрээ оруулсан ахмад үеийнхэн, өнөө цагийн түүхийг бүтээж буй, ирээдүйн түүхийг бүтээгчид болох залуус хилчид та бүхэнд амжилт бүтээл, сайн сайхны бүхнийг хүсэн ерөөж, ирээдүйн зуунд улам бүр хөгжин дэвшиж, хилийн халдашгүй дархан байдлаа бататгаж, хөгжил цэцэглэлтийн их замыг амжилт, бүтээлээр дүүрэн туулахын ерөөл өргөе.</p>
+      <p>[Мэндчилгээний эхний хэсэг — арга хэмжээний учир холбогдол, зорилгыг товч дурдана.]</p>
+      <p>[Хоёр дахь хэсэг — зочдод талархал илэрхийлж, өдрийг хамт өнгөрөөхийг урьж байгаагаа бичнэ.]</p>
     </div>
-    <div class="greeting-signature"> [ХҮНДЭТГЭСЭН ХИЛИЙН ЦЭРГИЙН 0245 ДУГААР АНГИ]</div>
+    <div class="greeting-signature">— [Нэр, албан тушаал]</div>
   </div>
 </section>
-
+ 
 <!-- ===================== SCHEDULE ===================== -->
 <section id="schedule">
   <div class="section-head">
     <div class="eyebrow">Хөтөлбөр</div>
     <h2>Үйл ажиллагааны цагийн хуваарь</h2>
   </div>
-
-  <div class="timeline">
+ 
+  <div class="day-tabs">
+    <button class="day-tab active" data-day="1">1-р өдөр<span>[Огноо]</span></button>
+    <button class="day-tab" data-day="2">2-р өдөр<span>[Огноо]</span></button>
+    <button class="day-tab" data-day="3">3-р өдөр<span>[Огноо]</span></button>
+  </div>
+ 
+  <!-- ============ 1-Р ӨДӨР ============ -->
+  <div class="timeline day-panel active" data-day-panel="1">
     <div class="t-item">
       <div class="t-time">10:00</div>
       <div class="t-dot-col"><div class="t-dot"></div></div>
@@ -457,6 +508,78 @@
       </div>
     </div>
     <div class="t-item">
+      <div class="t-time">18:00</div>
+      <div class="t-dot-col"><div class="t-dot"></div></div>
+      <div class="t-body">
+        <h3>1-р өдрийн хаалт</h3>
+        <p>[Нэмэлт мэдээлэл]</p>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- ============ 2-Р ӨДӨР ============ -->
+  <div class="timeline day-panel" data-day-panel="2">
+    <div class="t-item">
+      <div class="t-time">09:00</div>
+      <div class="t-dot-col"><div class="t-dot"></div></div>
+      <div class="t-body">
+        <h3>Өглөөний цай</h3>
+        <p>[Дэлгэрэнгүй мэдээлэл]</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">10:00</div>
+      <div class="t-dot-col"><div class="t-dot"></div></div>
+      <div class="t-body">
+        <h3>[2-р өдрийн үйл ажиллагаа]</h3>
+        <p>[Дэлгэрэнгүй тайлбар]</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">12:30</div>
+      <div class="t-dot-col"><div class="t-dot"></div></div>
+      <div class="t-body">
+        <h3>Үдийн зоог</h3>
+        <p>[Байршил / нэмэлт мэдээлэл]</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">14:00</div>
+      <div class="t-dot-col"><div class="t-dot"></div></div>
+      <div class="t-body">
+        <h3>2-р өдрийн хаалт</h3>
+        <p>[Нэмэлт мэдээлэл]</p>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- ============ 3-Р ӨДӨР ============ -->
+  <div class="timeline day-panel" data-day-panel="3">
+    <div class="t-item">
+      <div class="t-time">09:00</div>
+      <div class="t-dot-col"><div class="t-dot"></div></div>
+      <div class="t-body">
+        <h3>Өглөөний цай</h3>
+        <p>[Дэлгэрэнгүй мэдээлэл]</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">10:00</div>
+      <div class="t-dot-col"><div class="t-dot"></div></div>
+      <div class="t-body">
+        <h3>[3-р өдрийн үйл ажиллагаа]</h3>
+        <p>[Дэлгэрэнгүй тайлбар]</p>
+      </div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">12:30</div>
+      <div class="t-dot-col"><div class="t-dot"></div></div>
+      <div class="t-body">
+        <h3>Үдийн зоог</h3>
+        <p>[Байршил / нэмэлт мэдээлэл]</p>
+      </div>
+    </div>
+    <div class="t-item">
       <div class="t-time">14:00</div>
       <div class="t-dot-col"><div class="t-dot"></div></div>
       <div class="t-body">
@@ -466,7 +589,6 @@
     </div>
   </div>
 </section>
-
 <!-- ===================== LOCATION ===================== -->
 <section id="location">
   <div class="section-head">
@@ -474,12 +596,12 @@
     <h2>Хаана болох вэ</h2>
   </div>
   <div class="location-box">
-    <h3>Хилийн цэргийн 0245 дугаар анги</h3>
-    <p>Увс аймаг Улаангом сум 3-р баг бла2</p>
-    <a href="https://maps.app.goo.gl/8MGFFns487yVKp45A" target="_blank" rel="noopener">Газрын зураг дээр харах →</a>
+    <h3>[Байрны нэр]</h3>
+    <p>[Дэлгэрэнгүй хаяг, орц, давхар гэх мэт]</p>
+    <a href="https://maps.google.com/?q=[хаягаа энд бичих]" target="_blank" rel="noopener">Газрын зураг дээр харах →</a>
   </div>
 </section>
-
+ 
 <!-- ===================== GALLERY ===================== -->
 <section id="gallery">
   <div class="section-head">
@@ -492,13 +614,13 @@
   </div>
   <p class="gallery-note">Зураг дээр дарахад томоор нээгдэнэ. Хулгана аваачихад "Татах" товч гарч ирнэ. Гар утсанд зурган дээр удаан дарж хадгална.</p>
 </section>
-
+ 
 <!-- ===================== LIGHTBOX (зураг томоор харах) ===================== -->
 <div id="lightbox" class="lightbox">
   <span class="lightbox-close" id="lightboxClose">&times;</span>
   <img id="lightboxImg" src="" alt="">
 </div>
-
+ 
 <!-- ===================== FOOTER ===================== -->
 <footer>
   <svg class="khee-divider" viewBox="0 0 420 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -508,9 +630,9 @@
     <path d="M210 4 L218 12 L210 20 L202 12 Z" stroke="#c9a15b" stroke-width="1.2" fill="none"/>
     <path d="M245 4 L253 12 L245 20 L237 12 Z" stroke="#c9a15b" stroke-width="1.2" fill="none"/>
   </svg>
-  Таныг <strong>Хилийн цэргийн 0245 дугаар ангийн 50 жилийн ойд</strong> хүлээн авахдаа таатай байх болно.
+  Таныг <strong>[Арга хэмжээний нэр]</strong> дээр хүлээн авахдаа таатай байх болно.
 </footer>
-
+ 
 <!-- ===================== COUNTDOWN TIMER ===================== -->
 <!-- Доорх script хэсэгт огноогоо тохируулна -->
 <section class="countdown-section">
@@ -534,8 +656,24 @@
     </div>
   </div>
 </section>
-
+ 
 <script>
+  /* ===================================================================
+     2 ӨДРИЙН ХӨТӨЛБӨР — tab солих логик
+  =================================================================== */
+  document.querySelectorAll('.day-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      const day = tab.getAttribute('data-day');
+ 
+      document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+ 
+      document.querySelectorAll('.day-panel').forEach(panel => {
+        panel.classList.toggle('active', panel.getAttribute('data-day-panel') === day);
+      });
+    });
+  });
+ 
   /* ===================================================================
      ЗУРГИЙН ЖАГСААЛТ
      Шинэ зураг нэмэхдээ доорх жагсаалтад файлын нэрийг нэмнэ.
@@ -552,11 +690,11 @@
     'zurag7.jpg',
     'zurag8.jpg'
   ];
-
+ 
   const INITIAL_COUNT = 6; /* нүүр хуудсан дээр хэдэн зураг харагдахыг заана */
   const grid = document.getElementById('galleryGrid');
   const btn = document.getElementById('seeMoreBtn');
-
+ 
   galleryImages.forEach((file, i) => {
     const fig = document.createElement('figure');
     if (i >= INITIAL_COUNT) fig.classList.add('extra-img');
@@ -565,7 +703,7 @@
       '<a class="dl-link" href="images/' + file + '" download>⬇ Татах</a>';
     grid.appendChild(fig);
   });
-
+ 
   if (galleryImages.length <= INITIAL_COUNT) {
     btn.style.display = 'none';
   } else {
@@ -580,14 +718,14 @@
       btn.textContent = expanded ? 'Хураах' : 'Бүх зургийг үзэх (+' + hiddenCount + ')';
     });
   }
-
+ 
   /* ===================================================================
      LIGHTBOX — зураг дээр дарахад томоор харуулах
   =================================================================== */
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxClose = document.getElementById('lightboxClose');
-
+ 
   grid.addEventListener('click', (e) => {
     if (e.target.tagName === 'IMG') {
       lightboxImg.src = e.target.src;
@@ -595,12 +733,12 @@
       lightbox.classList.add('active');
     }
   });
-
+ 
   function closeLightbox(){
     lightbox.classList.remove('active');
     lightboxImg.src = '';
   }
-
+ 
   lightboxClose.addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', (e) => {
     if (e.target === lightbox) closeLightbox(); /* дэвсгэр дээр дарахад хаагдана */
@@ -608,7 +746,7 @@
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeLightbox();
   });
-
+ 
   /* ===================================================================
      COUNTDOWN TIMER
      Доорх огноог арга хэмжээнийхээ бодит огноо, цагаар СОЛИНО.
@@ -616,38 +754,39 @@
      Жишээ: 2026-09-15 өдрийн 10:00 цагт эхэлдэг бол:
      '2026-09-15T10:00:00'
   =================================================================== */
-  const eventDate = new Date('2026-09-12T10:00:00');
-
+  const eventDate = new Date('2026-09-15T10:00:00');
+ 
   const cdDays = document.getElementById('cdDays');
   const cdHours = document.getElementById('cdHours');
   const cdMinutes = document.getElementById('cdMinutes');
   const cdSeconds = document.getElementById('cdSeconds');
   const countdownGrid = document.getElementById('countdownGrid');
-
+ 
   function updateCountdown(){
     const now = new Date();
     const diff = eventDate - now;
-
+ 
     if (diff <= 0){
       countdownGrid.innerHTML = '<div class="countdown-ended">Арга хэмжээ эхэллээ!</div>';
       clearInterval(countdownTimer);
       return;
     }
-
+ 
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
     const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
     const minutes = Math.floor((diff / (1000 * 60)) % 60);
     const seconds = Math.floor((diff / 1000) % 60);
-
+ 
     cdDays.textContent = String(days).padStart(2, '0');
     cdHours.textContent = String(hours).padStart(2, '0');
     cdMinutes.textContent = String(minutes).padStart(2, '0');
     cdSeconds.textContent = String(seconds).padStart(2, '0');
   }
-
+ 
   updateCountdown();
   const countdownTimer = setInterval(updateCountdown, 1000);
 </script>
-
+ 
 </body>
 </html>
+ 
