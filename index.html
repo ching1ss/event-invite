@@ -1,3 +1,6 @@
+
+
+Event · HTML
 <!DOCTYPE html>
 <html lang="mn">
 <head>
@@ -602,6 +605,19 @@
   </div>
 </section>
  
+<!-- ===================== АНГИЙН ТАНИЛЦУУЛГА ===================== -->
+<section id="intro-gallery">
+  <div class="section-head">
+    <div class="eyebrow">Танилцуулга</div>
+    <h2>Ангийн танилцуулга</h2>
+  </div>
+  <div class="gallery" id="introGalleryGrid"></div>
+  <div class="gallery-controls">
+    <button id="introSeeMoreBtn" class="see-more-btn">Бүгдийг үзэх</button>
+  </div>
+  <p class="gallery-note">Зураг дээр дарахад томоор нээгдэнэ. Хулгана аваачихад "Татах" товч гарч ирнэ. Гар утсанд зурган дээр удаан дарж хадгална.</p>
+</section>
+ 
 <!-- ===================== GALLERY ===================== -->
 <section id="gallery">
   <div class="section-head">
@@ -680,6 +696,19 @@
      Зураг бүр "images/" folder дотор байх ёстой.
      Жишээ: 'zurag7.jpg', 'zurag8.jpg' гэх мэт үргэлжлүүлж бичнэ.
   =================================================================== */
+ 
+  /* --- Ангийн танилцуулгын зургууд --- */
+  const introImages = [
+    'ankhui1.jpg',
+    'ankhui2.jpg',
+    'ankhui3.jpg',
+    'ankhui4.jpg',
+    'ankhui5.jpg',
+    'ankhui6.jpg'
+    // ,'ankhui7.jpg'  <-- ингэж таслал тавьж нэмээд явна
+  ];
+ 
+  /* --- Үйл ажиллагааны зургууд --- */
   const galleryImages = [
     'zurag1.jpg',
     'zurag2.jpg',
@@ -692,46 +721,56 @@
   ];
  
   const INITIAL_COUNT = 6; /* нүүр хуудсан дээр хэдэн зураг харагдахыг заана */
-  const grid = document.getElementById('galleryGrid');
-  const btn = document.getElementById('seeMoreBtn');
  
-  galleryImages.forEach((file, i) => {
-    const fig = document.createElement('figure');
-    if (i >= INITIAL_COUNT) fig.classList.add('extra-img');
-    fig.innerHTML =
-      '<img src="images/' + file + '" alt="Арга хэмжээний зураг ' + (i + 1) + '" loading="lazy">' +
-      '<a class="dl-link" href="images/' + file + '" download>⬇ Татах</a>';
-    grid.appendChild(fig);
-  });
+  /* Дахин ашиглагдах функц: gallery грид + "бүгдийг үзэх" товчийг угсарна */
+  function setupGallery(images, gridId, btnId){
+    const grid = document.getElementById(gridId);
+    const btn = document.getElementById(btnId);
+    if (!grid || !btn) return;
  
-  if (galleryImages.length <= INITIAL_COUNT) {
-    btn.style.display = 'none';
-  } else {
-    const hiddenCount = galleryImages.length - INITIAL_COUNT;
-    btn.textContent = 'Бүх зургийг үзэх (+' + hiddenCount + ')';
-    let expanded = false;
-    btn.addEventListener('click', () => {
-      expanded = !expanded;
-      document.querySelectorAll('.extra-img').forEach(f => {
-        f.style.display = expanded ? 'flex' : 'none';
-      });
-      btn.textContent = expanded ? 'Хураах' : 'Бүх зургийг үзэх (+' + hiddenCount + ')';
+    images.forEach((file, i) => {
+      const fig = document.createElement('figure');
+      if (i >= INITIAL_COUNT) fig.classList.add('extra-img');
+      fig.innerHTML =
+        '<img src="images/' + file + '" alt="Зураг ' + (i + 1) + '" loading="lazy">' +
+        '<a class="dl-link" href="images/' + file + '" download>⬇ Татах</a>';
+      grid.appendChild(fig);
     });
+ 
+    if (images.length <= INITIAL_COUNT) {
+      btn.style.display = 'none';
+    } else {
+      const hiddenCount = images.length - INITIAL_COUNT;
+      btn.textContent = 'Бүх зургийг үзэх (+' + hiddenCount + ')';
+      let expanded = false;
+      btn.addEventListener('click', () => {
+        expanded = !expanded;
+        grid.querySelectorAll('.extra-img').forEach(f => {
+          f.style.display = expanded ? 'flex' : 'none';
+        });
+        btn.textContent = expanded ? 'Хураах' : 'Бүх зургийг үзэх (+' + hiddenCount + ')';
+      });
+    }
   }
  
+  setupGallery(introImages, 'introGalleryGrid', 'introSeeMoreBtn');
+  setupGallery(galleryImages, 'galleryGrid', 'seeMoreBtn');
+ 
   /* ===================================================================
-     LIGHTBOX — зураг дээр дарахад томоор харуулах
+     LIGHTBOX — зураг дээр дарахад томоор харуулах (хоёр gallery-д хамаарна)
   =================================================================== */
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxClose = document.getElementById('lightboxClose');
  
-  grid.addEventListener('click', (e) => {
-    if (e.target.tagName === 'IMG') {
-      lightboxImg.src = e.target.src;
-      lightboxImg.alt = e.target.alt;
-      lightbox.classList.add('active');
-    }
+  document.querySelectorAll('.gallery').forEach(galleryEl => {
+    galleryEl.addEventListener('click', (e) => {
+      if (e.target.tagName === 'IMG') {
+        lightboxImg.src = e.target.src;
+        lightboxImg.alt = e.target.alt;
+        lightbox.classList.add('active');
+      }
+    });
   });
  
   function closeLightbox(){
